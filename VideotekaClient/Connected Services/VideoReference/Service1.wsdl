@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:51561/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:51561/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:51561/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VideotekaService.DAL" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_GetZanr_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZanr" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetZanr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZanrResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppZanr_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppZanr" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppZanr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppZanrResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deleteZanr_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteZanr" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deleteZanr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteZanrResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteZanrSafe_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZanrSafe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteZanrSafe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZanrSafeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFilmZanr_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilmZanr" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFilmZanr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilmZanrResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFilm_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilm" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFilm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilmResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchFilm_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchFilm" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchFilm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchFilmResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetSlobodniFilmovi_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSlobodniFilmovi" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetSlobodniFilmovi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSlobodniFilmoviResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFilmDDL_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilmDDL" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFilmDDL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilmDDLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppFilm_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppFilm" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppFilm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppFilmResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteFilm_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFilm" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteFilm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFilmResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteFilmSafe_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFilmSafe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteFilmSafe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFilmSafeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetKlijent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetKlijent" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetKlijent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetKlijentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppKlijent_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppKlijent" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppKlijent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppKlijentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteKlijent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteKlijent" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteKlijent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteKlijentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteKlijentSafe_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteKlijentSafe" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteKlijentSafe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteKlijentSafeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetKlijentDDL_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetKlijentDDL" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetKlijentDDL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetKlijentDDLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAktivnaPosudba_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAktivnaPosudba" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAktivnaPosudba_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAktivnaPosudbaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppPosudba_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppPosudba" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUppPosudba_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUppPosudbaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeletePosudba_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePosudba" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeletePosudba_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePosudbaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTipMedija_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTipMedija" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTipMedija_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTipMedijaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="GetZanr">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetZanr" message="tns:IService1_GetZanr_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetZanrResponse" message="tns:IService1_GetZanr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUppZanr">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddUppZanr" message="tns:IService1_AddUppZanr_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddUppZanrResponse" message="tns:IService1_AddUppZanr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteZanr">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/deleteZanr" message="tns:IService1_deleteZanr_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/deleteZanrResponse" message="tns:IService1_deleteZanr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZanrSafe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteZanrSafe" message="tns:IService1_DeleteZanrSafe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteZanrSafeResponse" message="tns:IService1_DeleteZanrSafe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilmZanr">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetFilmZanr" message="tns:IService1_GetFilmZanr_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetFilmZanrResponse" message="tns:IService1_GetFilmZanr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetFilm" message="tns:IService1_GetFilm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetFilmResponse" message="tns:IService1_GetFilm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchFilm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SearchFilm" message="tns:IService1_SearchFilm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SearchFilmResponse" message="tns:IService1_SearchFilm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSlobodniFilmovi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetSlobodniFilmovi" message="tns:IService1_GetSlobodniFilmovi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetSlobodniFilmoviResponse" message="tns:IService1_GetSlobodniFilmovi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilmDDL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetFilmDDL" message="tns:IService1_GetFilmDDL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetFilmDDLResponse" message="tns:IService1_GetFilmDDL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUppFilm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddUppFilm" message="tns:IService1_AddUppFilm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddUppFilmResponse" message="tns:IService1_AddUppFilm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFilm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteFilm" message="tns:IService1_DeleteFilm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteFilmResponse" message="tns:IService1_DeleteFilm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFilmSafe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteFilmSafe" message="tns:IService1_DeleteFilmSafe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteFilmSafeResponse" message="tns:IService1_DeleteFilmSafe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKlijent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetKlijent" message="tns:IService1_GetKlijent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetKlijentResponse" message="tns:IService1_GetKlijent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUppKlijent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddUppKlijent" message="tns:IService1_AddUppKlijent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddUppKlijentResponse" message="tns:IService1_AddUppKlijent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteKlijent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteKlijent" message="tns:IService1_DeleteKlijent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteKlijentResponse" message="tns:IService1_DeleteKlijent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteKlijentSafe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteKlijentSafe" message="tns:IService1_DeleteKlijentSafe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteKlijentSafeResponse" message="tns:IService1_DeleteKlijentSafe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKlijentDDL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetKlijentDDL" message="tns:IService1_GetKlijentDDL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetKlijentDDLResponse" message="tns:IService1_GetKlijentDDL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAktivnaPosudba">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAktivnaPosudba" message="tns:IService1_GetAktivnaPosudba_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAktivnaPosudbaResponse" message="tns:IService1_GetAktivnaPosudba_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUppPosudba">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddUppPosudba" message="tns:IService1_AddUppPosudba_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddUppPosudbaResponse" message="tns:IService1_AddUppPosudba_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePosudba">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeletePosudba" message="tns:IService1_DeletePosudba_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeletePosudbaResponse" message="tns:IService1_DeletePosudba_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTipMedija">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTipMedija" message="tns:IService1_GetTipMedija_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTipMedijaResponse" message="tns:IService1_GetTipMedija_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetZanr">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetZanr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUppZanr">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddUppZanr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteZanr">
+      <soap:operation soapAction="http://tempuri.org/IService1/deleteZanr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZanrSafe">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteZanrSafe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilmZanr">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetFilmZanr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilm">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetFilm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchFilm">
+      <soap:operation soapAction="http://tempuri.org/IService1/SearchFilm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSlobodniFilmovi">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetSlobodniFilmovi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilmDDL">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetFilmDDL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUppFilm">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddUppFilm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFilm">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteFilm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFilmSafe">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteFilmSafe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKlijent">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetKlijent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUppKlijent">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddUppKlijent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteKlijent">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteKlijent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteKlijentSafe">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteKlijentSafe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKlijentDDL">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetKlijentDDL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAktivnaPosudba">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAktivnaPosudba" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUppPosudba">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddUppPosudba" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePosudba">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeletePosudba" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTipMedija">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTipMedija" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:51561/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
