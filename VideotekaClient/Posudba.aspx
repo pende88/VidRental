@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-
+    <script src="Scripts/bootbox.min.js"></script>
 
 
 
@@ -20,7 +20,7 @@
                 <fieldset>
                     <legend>Posudba</legend>
 
-                    <asp:DropDownList ID="ddlZauzetiFilmovi" DataValueField="idFilm" DataTextField="Naziv" runat="server" Visible="false" AutoPostBack="false"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlZauzetiFilmovi" DataValueField="idFilm" DataTextField="Naziv" runat="server" Visible="false" AutoPostBack="false" AppendDataBoundItems="false"></asp:DropDownList>
 
                     <div class="form group">
                         <asp:Label AssociatedControlID="txtIdPosudbe" ControlStyle-CssClass="control-label col-md-3" ID="lblId" runat="server" Text="id Posudbe: " Enabled="false"></asp:Label>
@@ -66,21 +66,23 @@
                             <asp:CustomValidator ID="validatorDdlKlijent" runat="server" ErrorMessage="Molimo odaberite klijenta" OnServerValidate="validatorDdlKlijent_ServerValidate"></asp:CustomValidator>
                         </div>
                     </div>
-
                     <div class="form group ">
                         <asp:Label ID="lblDatumPosudbe" CssClass="control-label col-md-3" runat="server" Text="Datum Posudbe:" AssociatedControlID="txtDatumPosudbe"></asp:Label>
                         <div class="col-md-9">
-                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatumPosudbe" />
-                            <asp:TextBox ReadOnly="false" ID="txtDatumPosudbe" CssClass="form-control" runat="server"></asp:TextBox>
-
-                        </div>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatumPosudbe" DaysModeTitleFormat="MMMM d, yyyy" Format="MMMM d, yyyy" />
+                            <asp:TextBox  ToolTip="Mjesec, dan, godina" ID="txtDatumPosudbe" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Datum posudbe je obavezan" ControlToValidate="txtDatumPosudbe"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="validatorDatumaPosudbe" runat="server" ErrorMessage="Datum nije u pravilnom formatu" OnServerValidate="validatorDatumaPosudbe_ServerValidate"></asp:CustomValidator>
+                           
+                            </div>
                     </div>
                      <div class="form group ">
                         <asp:label id="lbldatumpovrata" cssclass="control-label col-md-3" runat="server" text="Datum Povrata:" associatedcontrolid="txtDatumPovrata"></asp:label>
                         <div class="col-sm-9">
-                            
-                            <ajaxtoolkit:calendarextender id="calendarextender2" runat="server" targetcontrolid="txtDatumPovrata" />
-                            <asp:textbox ReadOnly="false" id="txtDatumPovrata" runat="server" cssclass="form-control odabirDatuma"></asp:textbox>
+                            <ajaxtoolkit:calendarextender id="calendarextender2" runat="server" targetcontrolid="txtDatumPovrata" DaysModeTitleFormat="MMMM d, yyyy" Format="MMMM d, yyyy" />
+
+                            <asp:textbox ToolTip="Mjesec, dan, godina" id="txtDatumPovrata" runat="server" cssclass="form-control"></asp:textbox>
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Datum povrata ne može biti ranije od datuma posudbe ili nije u pravilnom formatu" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
                         </div>
                     </div>
                     
@@ -95,9 +97,7 @@
                     <div class="col-md-9 col-md-offset-3">
                         <asp:Button CssClass="btn btn-default" ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click1" />
                         <asp:Button CssClass="btn btn-default" ID="btnUpdate" runat="server" Text="Update" OnClick="btnSave_Click1" />
-<%-- ne zaboravi napriviti event handler za deleteSafe --%>
-                        <%--<asp:Button CssClass="btn btn-default" ID="btnDeleteSafe" runat="server" Text="Delete" OnClick="btnDeleteSafe_Click" CausesValidation="false" />--%>
-                        <asp:Button CssClass="btn btn-default" ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" OnClientClick="javascript:return confirm('Are you sure?');" CausesValidation="false" />
+                        <asp:Button CssClass="btn btn-default" ID="btnDelete" runat="server" Text="Delete" OnClientClick="return ShowConfirm(this.id);" OnClick="btnDelete_Click" CausesValidation="false" />
                         <asp:Button CssClass="btn btn-default" ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CausesValidation="false" />
 
                     </div>
@@ -149,13 +149,13 @@
 
                         <asp:TemplateField HeaderText="Datum Posudbe">
                             <ItemTemplate>
-                                <asp:Label ID="lblDatumPosudbe" runat="server" Text='<%#Eval("DatumPosudbe","{0:dd-MM-yyyy}") %>' />
+                                <asp:Label ID="lblDatumPosudbe" runat="server" Text='<%#Eval("DatumPosudbe","{0:MMMM d, yyyy}") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Datum Povrata">
                             <ItemTemplate>
-                                <asp:Label ID="lblDatumPovrata" runat="server" Text='<%# Eval("DatumPovrata","{0:dd-MM-yyyy}") %>' />
+                                <asp:Label ID="lblDatumPovrata" runat="server" Text='<%# Eval("DatumPovrata","{0:MMMM d, yyyy}") %>' />
 
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -194,4 +194,28 @@
             </div>
         </div>
     </div>
+     <script type="text/javascript">
+        var confirmed = false;
+
+        function ShowConfirm(controlID) {
+            if (confirmed) { return true; }
+
+            bootbox.confirm("Jeste li sigurni?", function (result) {
+                if (result) {
+                    if (controlID != null) {
+                        var controlToClick = document.getElementById(controlID);
+                        if (controlToClick != null) {
+                            confirmed = true;
+                            controlToClick.click();
+                            confirmed = false;
+                        }
+                    }
+                }
+
+            });
+
+            return false;
+
+        }
+    </script>
 </asp:Content>

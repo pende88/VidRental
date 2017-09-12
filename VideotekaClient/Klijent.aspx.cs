@@ -45,7 +45,7 @@ namespace VideotekaClient
 
                 statusLbl.Text = "Operacija uspješno izvršena";
                 proxy.AddUppKlijent(k);
-
+                ClearAll();
                 FillGridView();
 
             }
@@ -74,7 +74,7 @@ namespace VideotekaClient
             txtAdresa.Text = (GridViewKlijent.SelectedRow.FindControl("lblGrad") as Label).Text;
             txtGrad.Text = (GridViewKlijent.SelectedRow.FindControl("lblAdresa") as Label).Text;
 
-           
+            statusLbl.Text = "";
 
             btnSave.Enabled = false;
             btnDeleteSafe.Enabled = true;
@@ -99,34 +99,33 @@ namespace VideotekaClient
             btnDeleteFull.Enabled = false;
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
+        protected void btnDeleteSafe_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(txtID.Text);
 
-            proxy.DeleteKlijent(id);
-            statusLbl.Text = "Uspješno obrisano";
-           
+
+            proxy.DeleteKlijentSafe(id);
+            int rezultat = (int)(proxy.DeleteKlijentSafe(id));
+            ClearAll();
             FillGridView();
-
-
 
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
-            btnDeleteSafe.Enabled = false;
             btnDeleteFull.Enabled = false;
-
+            btnDeleteSafe.Enabled = false;
             btnClear.Enabled = false;
+            if (rezultat == 1)
+            {
+                statusLbl.Text = "Podaci nisu obrisani jer su vezani uz druge tablice, za potpuno brisanje koristite tipku Full Delete";
+            }
+            else
+            {
+                statusLbl.Text = "Podaci uspoješno obrisani";
+            }
 
         }
 
-        protected void btnClear_Click(object sender, EventArgs e)
-        {
-            ClearAll();
-        }
-
-       
-
-        protected void btnDeleteSafe_Click(object sender, EventArgs e)
+        protected void btnDeleteFull_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(txtID.Text);
 
@@ -144,6 +143,16 @@ namespace VideotekaClient
 
             statusLbl.Text = "Svi povezani podaci uspješno izbrisani";
         }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearAll();
+            statusLbl.Text = "";
+        }
+
+       
+
+        
     }
 }
 

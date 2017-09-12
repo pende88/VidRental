@@ -139,13 +139,13 @@ namespace VideotekaClient {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
         
         /// <summary>
-        /// RangeValidator1 control.
+        /// validatorTxtGodina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
+        protected global::System.Web.UI.WebControls.CustomValidator validatorTxtGodina;
         
         /// <summary>
         /// btnSave control.
@@ -166,13 +166,13 @@ namespace VideotekaClient {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// btnDelete control.
+        /// btnDeleteSafe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.WebControls.Button btnDeleteSafe;
         
         /// <summary>
         /// btnDeletFull control.

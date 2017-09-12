@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -22,7 +23,8 @@ namespace VideotekaClient
             }
 
             btnUpdate.Enabled = false;
-            btnDelete.Enabled = false;
+            btnDeletFull.Enabled = false;
+            btnDeleteSafe.Enabled = false;
             btnSave.Enabled = true;
 
 
@@ -97,7 +99,8 @@ namespace VideotekaClient
             txtGodina.Text = (GridViewFilm.SelectedRow.FindControl("lblGodina") as Label).Text;
 
             btnSave.Enabled = false;
-            btnDelete.Enabled = true;
+            btnDeletFull.Enabled = false;
+            btnDeleteSafe.Enabled = false;
             btnUpdate.Enabled = true;
         }
 
@@ -108,16 +111,17 @@ namespace VideotekaClient
            txtGodina.Text = txtNaziv.Text = txtFilmId.Text = "";
             
             btnSave.Enabled = true;
-            btnDelete.Enabled = false;
+            btnDeleteSafe.Enabled = false;
             btnUpdate.Enabled = false;
-            btnDelete.Enabled = false;
+            btnDeletFull.Enabled = false;
+            btnDeleteSafe.Enabled = false;
             ddlZanr.SelectedIndex = 0;
             //txtPretraga.Text = "";
             FillGridView();
            
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
+        protected void btnDeleteSafe_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(txtFilmId.Text);
 
@@ -129,7 +133,8 @@ namespace VideotekaClient
 
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
-            btnDelete.Enabled = false;
+            btnDeletFull.Enabled = false;
+            btnDeleteSafe.Enabled = false;
             btnClear.Enabled = false;
             if(rezultat == 1)
             {
@@ -143,9 +148,29 @@ namespace VideotekaClient
 
         }
 
+        protected void btnDeletFull_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txtFilmId.Text);
+
+
+            proxy.DeleteFilm(id);
+
+            ClearAll();
+            FillGridView();
+
+            btnSave.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDeleteSafe.Enabled = false;
+            btnDeletFull.Enabled = false;
+            btnClear.Enabled = false;
+
+            lblStatus.Text = "Svi povezani podaci uspješno izbrisani";
+        }
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
             ClearAll();
+            txtPretraga.Text = "";
         }
 
         protected void btnPretraga_Click(object sender, EventArgs e)
@@ -180,58 +205,10 @@ namespace VideotekaClient
 
         protected void validatorTxtGodina_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            
-            int Num;
-            bool isNum = int.TryParse(txtGodina.Text.ToString(), out Num);
-            if (isNum)
-            {
-                args.IsValid = true;
-
-            }
-            else
-                args.IsValid = false;
-
-            DateTime vrijednostGodina;
-            if (txtGodina.Text == "" )
-            {
-                vrijednostGodina = DateTime.MinValue;
-                args.IsValid = false;
-            }
-            else
-            {
-
-                vrijednostGodina = Convert.ToDateTime(txtGodina.Text);
-            }
-            DateTime pocetnaGodina = new DateTime(1900);
-            var tekucaGodina = DateTime.Now.Year;
-            DateTime zavrsnaGodina = new DateTime(tekucaGodina);
-
-
-
-
-            if (vrijednostGodina < pocetnaGodina && vrijednostGodina > zavrsnaGodina)
-            {
-                args.IsValid = false;
-            }
+            DateTime godina;
+            args.IsValid = DateTime.TryParseExact(txtGodina.Text, "yyyy", null, DateTimeStyles.None, out godina);
         }
 
-        protected void btnDeletFull_Click(object sender, EventArgs e)
-        {
-            int id = Convert.ToInt32(txtFilmId.Text);
-
-
-            proxy.DeleteFilm(id);
-           
-            ClearAll();
-            FillGridView();
-
-            btnSave.Enabled = true;
-            btnUpdate.Enabled = false;
-            btnDelete.Enabled = false;
-            btnDeletFull.Enabled = false;
-            btnClear.Enabled = false;
-
-            lblStatus.Text = "Svi povezani podaci uspješno izbrisani";
-        }
+        
     }
 }

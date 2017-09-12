@@ -76,15 +76,6 @@ namespace VideotekaClient {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// btnDeleteFull control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteFull;
-        
-        /// <summary>
         /// btnDeleteSafe control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace VideotekaClient {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDeleteSafe;
+        
+        /// <summary>
+        /// btnDeleteFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteFull;
         
         /// <summary>
         /// btnClear control.

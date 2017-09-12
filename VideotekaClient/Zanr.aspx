@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-
+    <script src="Scripts/bootbox.min.js"></script>
 
 
 
@@ -42,15 +42,15 @@
                     <div class="col-sm-10 col-sm-offset-2">
                         <asp:Button CssClass="btn btn-default" ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click1" />
                         <asp:Button CssClass="btn btn-default" ID="btnUpdate" runat="server" Text="Update" OnClick="btnSave_Click1" />
-                        <asp:Button CssClass="btn btn-default" ID="btnDeleteFull" runat="server" Text="Delete" OnClick="btnDelete_Click" CausesValidation="false"/>
-                         <asp:Button CssClass="btn btn-default" ID="btnDeleteSafe" runat="server" Text="Delete" OnClick="btnDeleteSafe_Click" CausesValidation="false"/>
+                         <asp:Button CssClass="btn btn-default" ID="btnDeleteSafe" runat="server" Text="Delete Safe" OnClientClick="return ShowConfirm(this.id);" OnClick="btnDeleteSafe_Click" CausesValidation="false"/>
+                         <asp:Button CssClass="btn btn-default" ID="btnDeleteFull" runat="server" Text="Delete Full" OnClientClick="return ShowConfirm(this.id);" OnClick="btnDeleteFull_Click" CausesValidation="false"/>
 
                         <asp:Button CssClass="btn btn-default" ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CausesValidation="false"/>
                     </div>
 
                 </div>
                     </fieldset>
-                <asp:Label ID="lblStatus" runat="server" Text="" CssClass="col-md-offset-4"></asp:Label>
+                <asp:Label ID="lblStatus" runat="server" Text="" CssClass="col-md-offset-1"></asp:Label>
 
 
 
@@ -83,4 +83,28 @@
         </div>
 
     </div>
+    <script type="text/javascript">
+        var confirmed = false;
+
+        function ShowConfirm(controlID) {
+            if (confirmed) { return true; }
+
+            bootbox.confirm("Jeste li sigurni?", function (result) {
+                if (result) {
+                    if (controlID != null) {
+                        var controlToClick = document.getElementById(controlID);
+                        if (controlToClick != null) {
+                            confirmed = true;
+                            controlToClick.click();
+                            confirmed = false;
+                        }
+                    }
+                }
+
+            });
+
+            return false;
+
+        }
+    </script>
 </asp:Content>

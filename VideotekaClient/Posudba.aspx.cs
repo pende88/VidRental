@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace VideotekaClient
-{   //napravi da posuđeni filmovi u ddl-u budu diseableani
+{   
     public partial class Posudba : System.Web.UI.Page
     {
         VideoReference.IService1 proxy = new VideoReference.Service1Client();
@@ -18,7 +19,6 @@ namespace VideotekaClient
             if (!IsPostBack)
             {
                 FillGridView();
-               // FillDdlFilmovi();
                 FillDdlTipMedija();
                 FillDdlKlijent();
                 FillDdlFilmovi();
@@ -44,7 +44,7 @@ namespace VideotekaClient
             ddlFilm.DataSource = proxy.GetFilmDDL();
 
             ddlFilm.DataBind();
-           // ddlFilm.Items.Insert(0, new ListItem("Odaberite Film:", string.Empty));
+           
 
             ddlZauzetiFilmovi.DataSource = proxy.GetSlobodniFilmovi();
             ddlZauzetiFilmovi.DataBind();
@@ -88,9 +88,9 @@ namespace VideotekaClient
             {
                 VideoReference.Posudba p = new VideoReference.Posudba();
 
-                p.id = Convert.ToInt32(txtIdPosudbe.Text);
+                p.id = txtIdPosudbe.Text == "" ? 0 : Convert.ToInt32(txtIdPosudbe.Text);
 
-                p.idFilm = txtIdPosudbe.Text == "" ? 0 : Convert.ToInt32(txtIdPosudbe.Text);
+                p.idFilm = Convert.ToInt32(ddlFilm.SelectedValue);
 
                 p.idKorisnik = Convert.ToInt32(ddlKlijent.SelectedValue);
 
@@ -98,9 +98,7 @@ namespace VideotekaClient
 
                 p.idTipmedija = Convert.ToInt32(ddlTipMedija.SelectedValue);
 
-                //p.datumPosudbe = Convert.ToDateTime(calDatumPosudbe.SelectedDate);
-
-                //p.datumPovrata = Convert.ToDateTime(calDatumPovrata.SelectedDate);
+                
 
                 p.datumPosudbe = Convert.ToDateTime(txtDatumPosudbe.Text);
 
@@ -225,26 +223,7 @@ namespace VideotekaClient
 
             txtDatumPovrata.Text = (GridViewPosudba.SelectedRow.FindControl("lblDatumPovrata") as Label).Text.Trim();
 
-            
-
-
-            //try
-            //{
-            //    provjera = Convert.ToDateTime((GridViewPosudba.SelectedRow.FindControl("lblDatumPovrata") as Label).Text.Trim());
-            //}
-            //catch
-            //{
-            //    provjera = new DateTime(3000, 01, 01);
-            //}
-
-            //if (provjera > DateTime.Now)
-            //{
-            //    txtDatumPovrata.Text = DateTime.Now.ToShortDateString();
-            //}
-            //else
-            //{
-            //    txtDatumPovrata.Text = (GridViewPosudba.SelectedRow.FindControl("lblDatumPovrata") as Label).Text.Trim();
-            //}
+           
             txtDatumPosudbe.Text = (GridViewPosudba.SelectedRow.FindControl("lblDatumPosudbe") as Label).Text.Trim();
 
 
@@ -255,47 +234,9 @@ namespace VideotekaClient
 
         }
 
-        //protected void CustomValidatorKalendar_ServerValidate(object source, ServerValidateEventArgs args)
-        //{
+      
 
-        //    if (txtDatumPosudbe.Text == ""
-        //      || txtDatumPosudbe.Text == new DateTime(0001, 1, 1, 0, 0, 0))
-        //    {
-        //        args.IsValid = false;
-        //    }
-        //    else
-        //    {
-        //        args.IsValid = true;
-        //    }
-        //    if (calDatumPovrata.SelectedDate <= calDatumPosudbe.SelectedDate)
-        //    {
-        //        args.IsValid = false;
-        //    }
-        //    else
-        //    {
-        //        args.IsValid = true;
-        //    }
-
-        //    if (calDatumPovrata.SelectedDate == DateTime.MinValue)
-        //    {
-        //        args.IsValid = true;
-        //    }
-
-
-        //}
-
-        //protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
-        //{
-        //    if (calDatumPosudbe.SelectedDate == DateTime.MinValue)
-        //    {
-        //        args.IsValid = false;
-
-        //    }
-        //    else
-        //    {
-        //        args.IsValid = true;
-        //    }
-        //}
+       
 
         protected void validatorDdlFilm_ServerValidate(object source, ServerValidateEventArgs args)
         {
@@ -319,6 +260,34 @@ namespace VideotekaClient
             {
                 args.IsValid = false;
             }
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+           
+
+            DateTime povrat;
+            args.IsValid = DateTime.TryParseExact(txtDatumPovrata.Text, "MMMM d, yyyy", null, DateTimeStyles.None, out povrat);
+
+
+
+            string provjera = txtDatumPovrata.Text;
+
+            if (provjera == "")
+            {
+                args.IsValid = true;
+            }
+
+
+
+
+        }
+
+        protected void validatorDatumaPosudbe_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+
+            DateTime posudba;
+            args.IsValid = DateTime.TryParseExact(txtDatumPosudbe.Text, "MMMM d, yyyy", null, DateTimeStyles.None, out posudba);
         }
     }
 }
